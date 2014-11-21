@@ -4,7 +4,6 @@ module Av
     
     def initialize(options)
       found = []
-      found << 'avconv' if self.detect_command('avprobe')
       found << 'ffmpeg' if self.detect_command('ffmpeg')
       if found.empty?
         raise Av::UnableToDetect, "Unable to detect any supported library"
@@ -22,12 +21,6 @@ module Av
       def detect_command(command)
         command = "if command -v #{command} 2>/dev/null; then echo \"true\"; else echo \"false\"; fi"
         result = ::Av.run(command)
-        case result
-          when /true/
-            return true
-          when /false/
-            return false
-        end
       end
   end
 end
