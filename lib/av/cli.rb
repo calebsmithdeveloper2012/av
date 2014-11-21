@@ -11,6 +11,7 @@ module Av
         @command = Object.const_get('Av').const_get('Commands').const_get(found.first.capitalize).new(options)
       end
       ::Av.log("Found #{found.inspect}, using: #{found.first.capitalize}")
+      puts "Test"
     end
     
     protected
